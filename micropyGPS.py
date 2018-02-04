@@ -801,7 +801,23 @@ class MicropyGPS(object):
                 date_string = month + '/' + day + '/' + year
 
         return date_string
+    
+    def time_string(self, formatting='short'):
+        """
+        Creates a readable string of the current time.
+        Can select between long format including seconds
+        or a short formats
+        :return: time_string  string with long or short time date
+        """
 
+        # short Format as basis
+ 
+        if formatting == 'long':
+            strTS=f"{self.timestamp[0]:02d}:{self.timestamp[1]:02d}:{self.timestamp[2]:02.1f}"
+        else:
+            strTS= f"{self.timestamp[0]:02d}h{self.timestamp[1]:02d}" 
+        return(strTS)  
+            
     # All the currently supported NMEA sentences
     supported_sentences = {'GPRMC': gprmc, 'GLRMC': gprmc,
                            'GPGGA': gpgga, 'GLGGA': gpgga,
